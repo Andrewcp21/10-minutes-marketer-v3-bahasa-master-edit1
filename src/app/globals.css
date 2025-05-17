@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* RevoU-inspired custom colors */
+  --primary: #fcdc3b;       /* Yellow */
+  --primary-hover: #e0b800;
+  --accent-dark: #111111;
+  --accent-gray: #2d2d2d;
+  --accent-light: #fafafa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Theme access to RevoU colors */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-gray: var(--accent-gray);
+  --color-accent-light: var(--accent-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+
+    /* Optional: tweak colors for dark mode */
+    --primary: #fcdc3b;
+    --accent-gray: #444;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
