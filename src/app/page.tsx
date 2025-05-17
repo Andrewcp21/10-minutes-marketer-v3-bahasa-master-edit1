@@ -10,9 +10,15 @@ import CaptionInput from '@/components/CaptionInput';
 import InstagramMockup from '@/components/InstagramMockup';
 import FeedbackScreen from '@/components/FeedbackScreen';
 import Timer from '@/components/Timer';
+import PasswordProtection from '@/components/PasswordProtection';
 
 const AppContent = () => {
   const { state } = useAppContext();
+
+  // If not authenticated, show password protection screen
+  if (!state.isAuthenticated) {
+    return <PasswordProtection />;
+  }
 
   // Render the appropriate component based on the current step
   const renderStep = () => {

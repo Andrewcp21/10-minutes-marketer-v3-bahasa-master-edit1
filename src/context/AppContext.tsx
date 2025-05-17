@@ -23,6 +23,7 @@ interface AppState {
   isGeneratingImage: boolean;
   isGeneratingCaption: boolean;
   isGeneratingFeedback: boolean;
+  isAuthenticated: boolean;
 }
 
 interface AppContextType {
@@ -30,6 +31,7 @@ interface AppContextType {
   setState: React.Dispatch<React.SetStateAction<AppState>>;
   updateState: (updates: Partial<AppState>) => void;
   resetState: () => void;
+  setIsAuthenticated: (value: boolean) => void;
 }
 
 const initialState: AppState = {
@@ -51,7 +53,8 @@ const initialState: AppState = {
   elapsedTime: 0,
   isGeneratingImage: false,
   isGeneratingCaption: false,
-  isGeneratingFeedback: false
+  isGeneratingFeedback: false,
+  isAuthenticated: false
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -67,8 +70,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setState(initialState);
   };
 
+  const setIsAuthenticated = (value: boolean) => {
+    setState(prev => ({ ...prev, isAuthenticated: value }));
+  };
+
   return (
-    <AppContext.Provider value={{ state, setState, updateState, resetState }}>
+    <AppContext.Provider value={{ state, setState, updateState, resetState, setIsAuthenticated }}>
       {children}
     </AppContext.Provider>
   );
